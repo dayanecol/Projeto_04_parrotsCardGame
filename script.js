@@ -11,32 +11,6 @@ const list = document.querySelector("ul");
 const parrots= ["bobrossparrot","explodyparrot","fiestaparrot","metalparrot","revertitparrot","tripletsparrot","unicornparrot"];
 parrots=parrots.sort(comparador);
 
-list.innerHTML = `
-    <li class="card">
-            <div class="content front on">
-                <img src="img/front.png">
-            </div>
-            <div class="content back off">
-                <img src="img/unicornparrot.gif">
-            </div>
-    </li>
-    `;
-// for (let j=0; j<(numCards/2);j++){
-//     parrotsPicked=parrotsPicked.push(parrots[j]);
-//     parrotsPicked=parrotsPicked.push(parrots[j]);
-//     console.log(parrotsPicked);
-// }
-
-// parrotsPicked=parrotsPicked.sort(comparador);
-// console.log(parrotsPicked);
-
-insertCards(numCards);
-
-// function insertCards(){
-
-// ISSO VAI NO FOR
-
-    
 
 
 // Esta função pode ficar separada do código acima, onde você preferir
