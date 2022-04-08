@@ -52,6 +52,14 @@ body{
     height: 100px;
 }
 
+
+.on{
+    display: inline;
+}
+.off{
+    display: none;
+}
+
 @media (max-width: 414px) {
     .top{
         margin: 25px 0;
