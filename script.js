@@ -7,8 +7,9 @@ let pickedCards=[];
 let pairs;
 let first_card=``;
 let second_card=``;
+let moves=0;
+let numPlayed=0;
 
-// const parrotsPicked=[];
 
 
 //Seria bom colocar esse while numa function? Rever!
@@ -56,7 +57,7 @@ function buildDeck(){
 function selectedCard(element){
     let selected = element.classList.contains("selected");
     let isPair = element.classList.contains("Pairs");
-    
+    moves ++;
     
     if (!selected || !isPair ){
         
@@ -65,7 +66,6 @@ function selectedCard(element){
         if (pickedCards.length === 2){
             compareCards();
         }
-        // setTimeout(turnOver(element), time*1000);
     }
     
 }
@@ -76,16 +76,6 @@ function untap(){
     pickedCards=[]
 
 }
-//     element.querySelector(".back").classList.add("off");
-//     element.querySelector(".front").classList.remove("off");
-
-// function delay(){
-//     turnOver(first_card);
-//     turnOver(second_card);
-
-//     pickedCards=[];
-    
-// }
 
 
 function compareCards(){
@@ -98,13 +88,19 @@ function compareCards(){
         second_card.removeAttribute("onclick");
         second_card.classList.add("pairs");
         pickedCards=[];
+        numPlayed++;
+        isWin();
+
     }else{
         setTimeout(untap,1000);
-    }
-    
-
+    }   
 }
 
+function isWin(){
+    if ( numPlayed*2 === numCards*1 ){
+        alert("Você ganhou em jogadas!");
+    }
+}
 
 // Esta função pode ficar separada do código acima, onde você preferir
 function comparador() { 
