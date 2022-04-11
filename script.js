@@ -2,25 +2,37 @@ let parrots= ["bobrossparrot","explodyparrot","fiestaparrot","metalparrot","reve
 let numCards = 0;
 let deck = [];
 let card= ``;
-let time= 10;
 let pickedCards=[];
 let pairs;
 let first_card=``;
 let second_card=``;
 let moves=0;
 let numPlayed=0;
+let seconds=0;
+let time= 1000;
+let cron;
+let timePlayed;
+let playAgain="";
 
 
+start();
 
-//Seria bom colocar esse while numa function? Rever!
-while ((numCards%2 !== 0) || (numCards<4) || (numCards>14)){
-    numCards = prompt("Escolha um número par entre 4 e 14 para definir com quantas cartas deseja jogar!");
+function start(){
+    while ((numCards%2 !== 0) || (numCards<4) || (numCards>14)){
+        numCards = prompt("Escolha um número par entre 4 e 14 para definir com quantas cartas deseja jogar!");
+    }
+    parrots=parrots.sort(comparador);
+    buildDeck();
+    deck=deck.sort(comparador);
+    insertCards();
+    return startTimer();
 }
 
-parrots=parrots.sort(comparador);
-buildDeck();
-deck=deck.sort(comparador);
-insertCards();
+
+
+
+
+
 
 
 
@@ -98,11 +110,43 @@ function compareCards(){
 
 function isWin(){
     if ( numPlayed*2 === numCards*1 ){
-        alert("Você ganhou em jogadas!");
+        stopTimer();
+        alert(`Você ganhou em ${moves} jogadas e um tempo de ${timePlayed} segundos!`);
+        return reStart();
     }
 }
 
 // Esta função pode ficar separada do código acima, onde você preferir
 function comparador() { 
 	return Math.random() - 0.5; 
+}
+
+function startTimer(){
+    cron=setInterval(timer,time);
+}
+
+function stopTimer(){
+    clearInterval(cron);
+    seconds=0;
+    document.querySelector(".counter").innerHTML= seconds;
+
+}
+
+function timer(){
+    seconds++;
+    let format = seconds;
+    document.querySelector(".counter").innerHTML= format;
+    timePlayed= format;
+    return format;
+}
+
+function reStart(){
+    while(playAgain !== ("sim"||"não")){
+        playAgain = prompt ("Gostaria de jogar novamente?(sim/não)");
+    }
+    if (playAgain === "sim"){
+        document.location.reload(true);
+    }
+        
+
 }
